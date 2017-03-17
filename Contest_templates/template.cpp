@@ -4,6 +4,8 @@
 #include <string>
 #include <iomanip>
 #include <vector>
+//#include <bits/stdc++.h>
+//  ./file <infile >outfile. changes stdin and stdout
 
 #define ll long long
 using namespace std;
