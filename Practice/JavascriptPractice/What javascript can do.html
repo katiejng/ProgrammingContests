@@ -1,0 +1,155 @@
+<head>
+    <title>Testing</title>
+<body>
+    
+    <p id="demo"></p>
+    
+    <!-- changes content of html-->
+    <button type="button" onclick="document.getElementById('demo').innerHTML = Date()"> Click me to display Date and Time.</button>
+    <br/>
+    
+    <!--
+    or change the *style*
+    document.getElementById('demo').style.fontSize = "25px";
+    -->
+    <button type ="button" onclick="document.getElementById('demo').style.fontSize = '8px'">Click me to make the font smaller</button>
+    <button type ="button" onclick="document.getElementById('demo').style.fontSize = '25px'">Click me to make the font bigger</button>
+    <br/>
+    
+    <button type ="button" onclick="document.getElementById('demo').style.color='pink'">Click me to make the font pink</button>
+    <br/>
+    
+    <!--this can also be done with *attributes*. 
+    eg document.getElementById('demo').src = "?" -->
+
+    <!--
+    or *hide* elements
+    -->
+    <button type="button" onclick="document.getElementById('demo').style.display = 'none'">Click here to hide the text</button>
+    
+    
+    <button type="button" onclick="document.getElementById('demo').style.display = 'block'">Click here to reveal the text</button>
+    
+    <br/>
+    <!--we can use functions instead-->
+    <script>
+    function doEverything(){
+        document.getElementById('demo').innerHTML = Date();
+        document.getElementById('demo').style.fontSize = '50px';
+        document.getElementById('demo').style.color='blue';
+        
+    }
+    </script>
+    <button onclick="doEverything()">Click here to do everything</button>
+    <br/>
+    
+    <!--Use an external file. Can also use a full URL or relative URL-->
+    <script src="ExternalJS.js"></script>
+    <button onclick="external()">Click here to use external file</button>
+    <br/>
+    <!--display possibilities include 
+window.alert() makes an alert box, 
+document.write() writes into html output, 
+innerHTML writes into html element, 
+console.log() writes to console -->
+    
+    <button type ="button" onclick="window.alert('Button pressed')">Click me to make an alert</button>
+    <br/>
+    
+    <button type ="button" onclick="document.write('Button pressed')">Click me to write</button>
+    <br/>
+    
+    <button type ="button" onclick="console.log('Button pressed')">Click me to print to console?</button>
+    <br/>
+    
+    <!-- can use variables-->
+    <script>
+    function usingVariables(n){
+        var a = 0;
+        var b = 1;
+        if (n == 0){
+            return a;
+        }
+        if (n == 1){
+            return b;
+        }
+            
+        while(n>0){
+            temp = a + b;
+            a = b;
+            b = temp;
+            n=n-1;
+        }
+        return a;
+        
+    }
+   
+    </script>
+    <button type="button" onclick="document.getElementById('demo').innerHTML = usingVariables(6)">Click me to watch this code fail</button>
+    <br/>
+    
+    <!--control statements: break, continue, debugger, do...while, for, function, if...else, return, switch, try...catch, var-->
+    
+    <!--Arithmetic Operators: +, -, *, /, %, ++, -- -->
+    <!--Assignment Operators: =, +=, -=, *=, /=, %= -->
+    <!--Add or not && || !-->
+    <!-- type operators: 
+        typeof: returns type of a variable. string, number, boolean, null, undefined. function, object 
+        instanceof: returns true if it is an instance of a type-->
+    
+    <!-- bitwise operators: &, |, ~ (not), ^ (xor), <<, >>, >>>(zero fill right shift)
+    
+    <!-- numbers can be 123e5; true, false
+        arrays:
+        var cars = ["a", "b", "c"]
+        objects:
+        var person = {
+            firstname: "John",  
+            lastname:"Doe", 
+            age:50, 
+            eyecolour:"blue",
+            fullName : function() {
+            return this.firstName + " " + this.lastName;
+        }
+}-->
+    
+    <!--buttons:
+onchange (when a html element has been changed)
+onclick
+onmouseover
+onmouseout
+onkeydown
+onload
+-->
+    
+    <!-- strings:
+string.length
+string.indexOf("string")
+string.lastIndexOf("string")
+string.search("string")
+slice(start, end)
+substring(start, end)
+substr(start, length)
+string.replace("a", "b"). For all matches use string.replace(/a/g, "b")
+string.toUpperCase();
+string.toLowerCase();
+string.concat("a", "b")
+string.charAt(0)
+string.split -> convert to an array
+\ escape character. Can also break text string. Or use a + symbol
+-->
+    
+    <!--Arrays:
+array.length
+array.sort()
+array.toString()
+array.join(",")
+array.pop
+array.push
+delete array[0] -> makes it undefined
+array.splice(0,1)
+array.concat(anotherArray)
+array.reverse()
+-->
+</body>
+

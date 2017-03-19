@@ -1,0 +1,26 @@
+<head>
+    <title>Grade Calculator</title>
+</head>
+<body>
+    <form id = "frm1" action ="form_action.asp">
+    Assessment Percentage: <input type="text" name = "AssessmentP"> 
+         Weighting: <input type="text" name = "AssessmentW"><br>
+    Exam Percentage: <input type="text" name = "ExamP"> Weighting: <input type="text" name = "ExamW"><br>
+    </form>
+    
+    <button onclick="myFunction()">Try it</button>
+
+    Overall Percentage: <p id="demo"></p>
+
+    <script>
+    function myFunction() {
+        var x = document.getElementById("frm1");
+        var score = 0;
+        var i;
+        for (i = 0; i<2; i++){
+            score += x.elements[2*i].value * x.elements[2*i+1].value;
+        }
+        document.getElementById("demo").innerHTML = score/100;
+    }
+    </script>
+</body>
