@@ -5,6 +5,7 @@
 #include <vector>
 #include <math.h>
 #include <algorithm>
+#include <queue>
 //#include <bits/stdc++.h>
 //  ./file <infile >outfile. changes stdin and stdout
 
@@ -20,40 +21,64 @@ void test(int stalls[],int N){
 		cout<<endl;
 }
 
+struct Group{
+    int start,end;
+};
 
-void work(int stalls[], int occupied[], int N, int K){
-	stalls[(int)N/2]= 1;//The Kth person goes in this spot
-	
-	
-	work(stalls[],(int)N/2,K-1)
 
+void work(int N, int K, vector<Group> groups,int stalls[]){
+    while(K>0){
+        Group current = groups[0];
+        Group a;
+        Group b;
+        int split = (int)current.start+current.end/2;
+        stalls[split]=1;
+        a.start = current.start;
+        a.end = split;
+        b.start = split;
+        b.end = current.end;
+        if ((current.end-current.start) %2 ==0){
+         
+            groups.push_back(b);
+            groups.push_back(a);
+
+        }else{
+            groups.push_back(a);
+            groups.push_back(b);
+
+        }
+        
+        groups.erase(0);
+        k-=1;
+    }
+    test(stalls,N); 
 }
 
-struct group {
-	
-	int index;
-	int length;
-};
+
 
 int main(){
 
 
-	//ifstream cin ("C_smaint.in");
-	//ofstream cout ("sher_smaint.out");
 	int T; //n = pebble types, k = number that can fit in one pocket
 	cin >>T;
 	int res =0;
 	int N,K;
 	for (int t0=0;t0<T;++t0){
 		cin>>N>>K;
-		
-		int stalls[N+2] = {0};
-		vector<group> groups[K+2];
+		vector<Group> groups;
+        int stalls[N+2]={0};
 		stalls[0]= 1;
 		stalls[N+1]= 1;
+        
+        Group a;
+        a.start = 0;
+        a.end = N+1;
+        groups.push_back(a);
+        
+        work(N,K,groups,stalls);
 		
+        
 		
-		work(stalls, occupied, N,K);
 		
 		
 		

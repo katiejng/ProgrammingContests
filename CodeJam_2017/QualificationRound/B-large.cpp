@@ -16,23 +16,24 @@ using namespace std;
 int main(){
 
 
-	//ifstream cin ("C_small.in");
-	//ofstream cout ("sher_small.out");
-	ll T; //n = pebble types, k = number that can fit in one pocket
+	int T; //n = pebble types, k = number that can fit in one pocket
 	cin >>T;
-	ll res =0;
 	string N;
 	for (ll t0=0;t0<T;++t0){
 		cin>>N;
 		int n = N.length();
-        int flag = 0;
-		for (int i=0;i<N.length()-1;++i){
-			if (flag==0){
-                if (N[i]>N[i+1]){
-                    N[i] = N[i]-1;
-                }
+        for (int i=0;i<N.length()-1;++i){
+            //cout <<N<<endl;
+			if (N[i]<=N[i+1]){
+                //cout <<"THis happened"<<endl;
             }else{
-                N[i]= '9';
+                N[i]-=1;
+                
+                for (int j=i+1;j<N.length();++j){
+                    N[j]='9';
+                }
+                //cout<<"now it is"<<N<<endl;
+                i-=2;
                 
             }
             
