@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef vector<int> vi;
+
+int main() {
+	int N;
+	cin >>N;
+	vi pitches(N,0);
+	
+	int total_pitch_len;
+	for (int i=0;i<N;i++){
+	cin >> pitches[i];
+	total_pitch_len+= pitches[i];
+	}
+
+
+	for(int rope_len = 50;rope_len<=70;rope_len+=10){
+		if (rope_len/2 <total_pitch_len){
+			cout << "0 ";
+		}else{
+		
+	}
+		
+	}	
+
+
+
+	for (int i=0;i<N;i++){
+	cout << pitches[i];
+	}
+	return 0;
+}
