@@ -1,9 +1,10 @@
 //https://codejam.withgoogle.com/codejam/contest/dashboard?c=6304486#s=p2
 #include <iostream>
-#include <fstream> 
+#include <fstream>
 #include <string>
 #include <iomanip>
 #include <vector>
+#include <algorithm>
 //#include <bits/stdc++.h>
 //  ./file <infile >outfile. changes stdin and stdout
 
@@ -14,7 +15,7 @@ using namespace std;
 
 ll work (ll l, ll r, vector<vector<double> > &memo){
     ll opt1 = memo[l-1][r-1]+1;
-    
+
     ll opt2 = 0;
     for (ll k = 0; k<=min(l,r)-2;++k){
         ll temp = memo[l-2-k][r-2-k]+memo[k][k]+3;
@@ -24,24 +25,24 @@ ll work (ll l, ll r, vector<vector<double> > &memo){
         }
     }
     return max(opt1,opt2);
-    
-    
+
+
 }
 
 
 int main(){
-    
-    
+
+
     ifstream cin ("C_small.in");
     ofstream cout ("sher_small.out");
-    int t;    
+    int t;
     cin >>t;
     for(int t0 = 0; t0<t; ++t0){
         int L,R;
         cin >> L >> R;
         //cout <<L<<R;
         //create a vector of vectors that saves result for n,m
-        
+
         vector< vector<double> > memo(L+1, vector<double>(R+1, -1));
         ll res;
         if (L==0 || R==0){
@@ -67,18 +68,16 @@ int main(){
             }
             res = memo[L][R];
         }
-        
+
         cout <<"Case #"<<t0+1<<": "<<res<<endl; //<<fixed<<setprecision(8)
-    
+
     }
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
     return 0;
 }
-
-
