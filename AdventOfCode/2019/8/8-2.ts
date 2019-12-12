@@ -1,5 +1,4 @@
 import input from "./in8-2";
-console.log(input.small);
 
 function count(layer: string) {
   const result = new Array(10).fill(0);
@@ -38,21 +37,35 @@ function getImage(image: string, width: number, height: number) {
   const totalPixels = image.length;
   const layers = totalPixels / pixels;
 
-  const results = new Array(height).fill(new Array(width).fill(2));
-  // for (let i = 0; i < layers; i++) {
-  //   results.push(count(image.slice(i * pixels, (i + 1) * pixels)));
-  // }
+  const results = new Array(height * width).fill("2");
+  for (let i = 0; i < layers; i++) {
+    let layer = image.slice(i * pixels, (i + 1) * pixels);
+    for (let j = 0; j < pixels; j++) {
+      if (layer[j] !== "2" && results[j] === "2") {
+        results[j] = layer[j];
+      }
+    }
+  }
   return results;
 }
 
-function printImage(image: Array<Array<number>>) {
-  for (let i = 0; i < image.length; i++) {
-    console.log(image[i].join(""));
+function printImage(image: Array<string>, width: number, height: number) {
+  for (let i = 0; i < height; i++) {
+    console.log(
+      image
+        .slice(i * width, (i + 1) * width)
+        .join("")
+        .replace(/2/g, " ")
+        .replace(/0/g, "■")
+        .replace(/1/g, "□")
+    );
   }
 }
 
 // const res = getLayerWithLeast0s(input.value, 25, 6);
 // console.log(res);
 
-const res = getImage(input.value, 25, 6);
-printImage(res);
+let width = 25;
+let height = 6;
+const res = getImage(input.value, width, height);
+printImage(res, width, height);
