@@ -42,7 +42,7 @@ function doIt(phases: Array<number>, args: Array<number>) {
 
     computer = computers[i];
   }
-  return inputs[0];
+  return inputs;
 }
 
 function permute(permutation: Array<number>) {
@@ -76,11 +76,12 @@ function main() {
   const permutations = permute([5, 6, 7, 8, 9]);
   const results = [];
   for (let i = 0; i < permutations.length; i++) {
-    results.push(doIt(permutations[i], DONT_USE_GLOBAL));
+    results.push(doIt(permutations[i], DONT_USE_GLOBAL)[0]);
   }
-  console.log(Math.max(...results));
+  return Math.max(...results);
 }
-main();
-export { permute, doItLikeBefore, doIt };
+console.log(main());
+
+export { main, permute, doItLikeBefore, doIt };
 
 //4248984

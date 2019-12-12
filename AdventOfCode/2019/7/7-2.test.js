@@ -1,4 +1,4 @@
-import { permute, doItLikeBefore, doIt } from "./7-2";
+import { main, permute, doItLikeBefore, doIt } from "./7-2";
 import input from "./in7-2";
 test("test permute", () => {
   expect(permute([1, 2])).toStrictEqual([
@@ -41,9 +41,14 @@ test("7-1 case five", () => {
   const result = doIt([9, 7, 8, 5, 6], list);
   expect(result).toStrictEqual([18216]);
 });
-// test("7-1 case real", () => {
-//   const list = input.value.split(",").map(x => parseInt(x));
+test("7-1 case real", () => {
+  const list = input.value.split(",").map(x => parseInt(x));
 
-//   const result = doIt([9, 8, 7, 6, 5], list);
-//   expect(result).toStrictEqual([139629729]);
-// });
+  const result = doIt([9, 8, 7, 6, 5], list);
+  expect(result).toStrictEqual([1869702]);
+});
+
+test("7-1 case main", () => {
+  const result = main();
+  expect(result).toBe(4248984);
+});
