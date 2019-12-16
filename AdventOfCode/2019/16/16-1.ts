@@ -5,9 +5,9 @@ function calculate(
   phase: number,
   index: number
 ) {
-  let useful = input.slice(index);
-  let result = useful.map((value, resultIndex) => {
-    let phaseIndex = Math.floor(resultIndex / (phase + 1)) % phases.length;
+  let result = input.map((value, resultIndex) => {
+    let phaseIndex =
+      Math.floor((resultIndex + 1) / (index + 1)) % phases.length;
     return [value, phases[phaseIndex]];
   });
   return result;
