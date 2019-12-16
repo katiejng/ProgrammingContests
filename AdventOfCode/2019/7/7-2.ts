@@ -71,7 +71,6 @@ function permute(permutation: Array<number>) {
 }
 
 function main() {
-  console.log("KATIE", new Date().toString());
   const DONT_USE_GLOBAL = input.value.split(",").map(x => parseInt(x));
   const permutations = permute([5, 6, 7, 8, 9]);
   const results = [];
@@ -80,7 +79,6 @@ function main() {
   }
   return Math.max(...results);
 }
-console.log(main());
 
 export { main, permute, doItLikeBefore, doIt };
 

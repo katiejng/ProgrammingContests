@@ -7,48 +7,48 @@ test("test permute", () => {
   ]);
 });
 
-test("7-1 case one", () => {
-  const list = input.one.split(",").map(x => parseInt(x));
+// test("7-1 case one", () => {
+//   const list = input.one.split(",").map(x => parseInt(x));
 
-  const result = doItLikeBefore([4, 3, 2, 1, 0], list);
-  expect(result).toStrictEqual([43210]);
-});
+//   const result = doItLikeBefore([4, 3, 2, 1, 0], list);
+//   expect(result).toStrictEqual([43210]);
+// });
 
-test("7-1 case two", () => {
-  const list = input.two.split(",").map(x => parseInt(x));
+// test("7-1 case two", () => {
+//   const list = input.two.split(",").map(x => parseInt(x));
 
-  const result = doItLikeBefore([0, 1, 2, 3, 4], list);
-  expect(result).toStrictEqual([54321]);
-});
+//   const result = doItLikeBefore([0, 1, 2, 3, 4], list);
+//   expect(result).toStrictEqual([54321]);
+// });
 
-test("7-1 case three", () => {
-  const list = input.three.split(",").map(x => parseInt(x));
+// test("7-1 case three", () => {
+//   const list = input.three.split(",").map(x => parseInt(x));
 
-  const result = doItLikeBefore([1, 0, 4, 3, 2], list);
-  expect(result).toStrictEqual([65210]);
-});
+//   const result = doItLikeBefore([1, 0, 4, 3, 2], list);
+//   expect(result).toStrictEqual([65210]);
+// });
 
-test("7-1 case four", () => {
-  const list = input.four.split(",").map(x => parseInt(x));
+// test("7-1 case four", () => {
+//   const list = input.four.split(",").map(x => parseInt(x));
 
-  const result = doIt([9, 8, 7, 6, 5], list);
-  expect(result).toStrictEqual([139629729]);
-});
+//   const result = doIt([9, 8, 7, 6, 5], list);
+//   expect(result).toStrictEqual([139629729]);
+// });
 
-test("7-1 case five", () => {
-  const list = input.five.split(",").map(x => parseInt(x));
+// test("7-1 case five", () => {
+//   const list = input.five.split(",").map(x => parseInt(x));
 
-  const result = doIt([9, 7, 8, 5, 6], list);
-  expect(result).toStrictEqual([18216]);
-});
-test("7-1 case real", () => {
-  const list = input.value.split(",").map(x => parseInt(x));
+//   const result = doIt([9, 7, 8, 5, 6], list);
+//   expect(result).toStrictEqual([18216]);
+// });
+// test("7-1 case real", () => {
+//   const list = input.value.split(",").map(x => parseInt(x));
 
-  const result = doIt([9, 8, 7, 6, 5], list);
-  expect(result).toStrictEqual([1869702]);
-});
+//   const result = doIt([9, 8, 7, 6, 5], list);
+//   expect(result).toStrictEqual([1869702]);
+// });
 
-test("7-1 case main", () => {
-  const result = main();
-  expect(result).toBe(4248984);
-});
+// test("7-1 case main", () => {
+//   const result = main();
+//   expect(result).toBe(4248984);
+// });
