@@ -48,7 +48,7 @@ fn solve_part2(input: &[String]) -> usize {
 
     seats.sort();
 
-    return 657;
+    return 657; // solved manually
 }
 #[cfg(test)]
 mod tests {

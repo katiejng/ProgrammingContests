@@ -24,20 +24,7 @@ fn solve_helper(input: &[Vec<char>], down: usize, right: usize) -> usize {
     }
     return result;
 }
-// fn solve_helper2(input: &[Vec<char>], down: usize, right: usize) -> usize {
-//     let width = input[0].len();
-//     let steps = input.len() / down;
 
-//     let mut result = 0;
-//     for i in 1..steps {
-//         let x = i * right % width;
-//         let y = i * down;
-//         if input[y][x] == '#' {
-//             result += 1;
-//         }
-//     }
-//     return result;
-// }
 #[aoc(day3, part2)]
 fn solve_part2(input: &[Vec<char>]) -> usize {
     let tests = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)];
