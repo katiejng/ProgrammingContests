@@ -5,7 +5,6 @@ fn input_generator(input: &str) -> Vec<usize> {
 fn helper(input: &[usize], goal: usize, start_index: usize, end_index: usize) -> bool {
     for number in start_index..end_index {
         for number2 in number + 1..end_index + 1 {
-            println!("{} {}", number, number2);
             if input[number] + input[number2] == goal {
                 return true;
             }
@@ -22,10 +21,6 @@ fn solve_part1(input: &[usize]) -> usize {
         let start_index = cur_index - rolling_number;
         let end_endex = cur_index - 1;
         let test = helper(input, input[cur_index], start_index, end_endex);
-        println!(
-            "{} {} {} {} {}",
-            cur_index, input[cur_index], start_index, end_endex, test
-        );
         if !test {
             return input[cur_index];
         }
@@ -41,7 +36,6 @@ fn solve_part2(input: &[usize]) -> usize {
     let mut end_index: usize = 0;
     let mut sum: isize = 0;
     loop {
-        println!("{} {} {}", sum, start_index, end_index);
         if sum == goal {
             let slice = &input[start_index..end_index];
             return slice.iter().min().unwrap() + slice.iter().max().unwrap();
