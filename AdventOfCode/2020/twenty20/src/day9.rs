@@ -16,12 +16,10 @@ fn helper(input: &[usize], goal: usize, start_index: usize, end_index: usize) ->
 #[aoc(day9, part1)]
 fn solve_part1(input: &[usize]) -> usize {
     let rolling_number = 25;
-
     for cur_index in rolling_number..input.len() - 1 {
         let start_index = cur_index - rolling_number;
-        let end_endex = cur_index - 1;
-        let test = helper(input, input[cur_index], start_index, end_endex);
-        if !test {
+        let end_index = cur_index - 1;
+        if !helper(input, input[cur_index], start_index, end_index) {
             return input[cur_index];
         }
     }
@@ -31,7 +29,6 @@ fn solve_part1(input: &[usize]) -> usize {
 #[aoc(day9, part2)]
 fn solve_part2(input: &[usize]) -> usize {
     let goal = 104054607;
-
     let mut start_index: usize = 0;
     let mut end_index: usize = 0;
     let mut sum: isize = 0;
@@ -45,7 +42,6 @@ fn solve_part2(input: &[usize]) -> usize {
             if end_index >= input.len() {
                 return 1;
             }
-
             sum += input[end_index - 1] as isize;
         }
         if sum > goal {
