@@ -78,7 +78,7 @@ fn get_waypoint_position_after_rotation(
     let mut new_waypoint_position = waypoint_position.clone();
     let number_of_rotations = rotation / 90;
 
-    (0..number_of_rotations).for_each(|i| {
+    (0..number_of_rotations).for_each(|_i| {
         new_waypoint_position = (new_waypoint_position.1, 0 - new_waypoint_position.0)
     });
     return new_waypoint_position;
@@ -86,32 +86,26 @@ fn get_waypoint_position_after_rotation(
 
 #[aoc(day12, part2)]
 fn solve_part2(input: &[(char, usize)]) -> i32 {
-    println!("{:?}", input);
-
     let mut position = (0, 0);
     let mut waypoint_position = (10, 1);
 
-    input.iter().for_each(|instruction| {
-        match instruction.0 {
-            'N' | 'E' | 'S' | 'W' => {
-                waypoint_position =
-                    get_position_after_move(waypoint_position, instruction.0, instruction.1 as i32);
-            }
-            'L' => {
-                waypoint_position =
-                    get_waypoint_position_after_rotation(waypoint_position, 360 - instruction.1)
-            }
-            'R' => {
-                waypoint_position =
-                    get_waypoint_position_after_rotation(waypoint_position, instruction.1)
-            }
-            'F' => {
-                position =
-                    get_position_after_move_waypoint(waypoint_position, position, instruction.1);
-            }
-            _ => return,
+    input.iter().for_each(|instruction| match instruction.0 {
+        'N' | 'E' | 'S' | 'W' => {
+            waypoint_position =
+                get_position_after_move(waypoint_position, instruction.0, instruction.1 as i32);
         }
-        println!("{:?} {:?} {:?}", instruction, position, waypoint_position);
+        'L' => {
+            waypoint_position =
+                get_waypoint_position_after_rotation(waypoint_position, 360 - instruction.1)
+        }
+        'R' => {
+            waypoint_position =
+                get_waypoint_position_after_rotation(waypoint_position, instruction.1)
+        }
+        'F' => {
+            position = get_position_after_move_waypoint(waypoint_position, position, instruction.1);
+        }
+        _ => return,
     });
 
     return position.0.abs() + position.1.abs();
