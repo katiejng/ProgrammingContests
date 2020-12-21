@@ -217,3 +217,5 @@ pip-log.txt
 
 
 **/**/target/
+
+**/**/.vscode/settings.json
