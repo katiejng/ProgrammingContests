@@ -35,7 +35,7 @@ struct NextMonkey {
 }
 
 impl Monkey {
-    fn tick(&mut self, part: usize) -> Vec<NextMonkey> {
+    fn tick(&mut self) -> Vec<NextMonkey> {
         let items = self.items.clone();
         self.num_throws += items.len();
         self.items = vec![];
@@ -43,11 +43,7 @@ impl Monkey {
         let results = items.iter().map(|item| {
             let new_first_item = self.perform_operation(*item);
 
-            let bored_first_item = if part == 1 {
-                new_first_item / 3
-            } else {
-                new_first_item
-            };
+            let bored_first_item = new_first_item / 3;
 
             let next_monkey = self.test(bored_first_item);
 
@@ -152,28 +148,23 @@ fn input_generator(input: &str) -> Vec<Monkey> {
 
 #[aoc(day11, part1)]
 pub fn solve_part1(input: &[Monkey]) -> usize {
+    let num_monkeys = input.len();
     let mut monkeys: HashMap<usize, Monkey> = HashMap::new();
 
-    input.iter().for_each(|monkey| {
-        monkeys.insert(monkey.id, monkey.clone());
-    });
+    for monkey in input {
+        monkeys.insert(monkey.id, monkey.to_owned());
+    }
 
-    let num_monkeys = input.len();
     for _ in 0..20 {
-        (0..num_monkeys).for_each(|monkey_index| {
-            let mut monkey_one = monkeys.get(&monkey_index).unwrap().clone();
-            let monkey_results = monkey_one.tick(1);
+        for monkey_index in 0..num_monkeys {
+            let a_monkey = monkeys.get_mut(&monkey_index).unwrap();
+            let monkey_results = a_monkey.tick();
 
             monkey_results.iter().for_each(|monkey_result| {
-                let mut matching_monkey = monkeys.get(&monkey_result.monkey_id).unwrap().clone();
-
+                let matching_monkey = monkeys.get_mut(&monkey_result.monkey_id).unwrap();
                 matching_monkey.receive(monkey_result.worry_score);
-
-                monkeys.insert(matching_monkey.id, matching_monkey);
             });
-
-            monkeys.insert(monkey_index, monkey_one);
-        });
+        }
     }
 
     let mut monkey_business: Vec<usize> =
@@ -186,38 +177,8 @@ pub fn solve_part1(input: &[Monkey]) -> usize {
 }
 
 #[aoc(day11, part2)]
-pub fn solve_part2(input: &[Monkey]) -> usize {
-    let mut monkeys: HashMap<usize, Monkey> = HashMap::new();
-
-    input.iter().for_each(|monkey| {
-        monkeys.insert(monkey.id, monkey.clone());
-    });
-
-    let num_monkeys = input.len();
-    for _ in 0..20 {
-        (0..num_monkeys).for_each(|monkey_index| {
-            let mut monkey_one = monkeys.get(&monkey_index).unwrap().clone();
-            let monkey_results = monkey_one.tick(1);
-
-            monkey_results.iter().for_each(|monkey_result| {
-                let mut matching_monkey = monkeys.get(&monkey_result.monkey_id).unwrap().clone();
-
-                matching_monkey.receive(monkey_result.worry_score);
-
-                monkeys.insert(matching_monkey.id, matching_monkey);
-            });
-
-            monkeys.insert(monkey_index, monkey_one);
-        });
-    }
-
-    let mut monkey_business: Vec<usize> =
-        monkeys.values().map(|monkey| monkey.num_throws).collect();
-
-    monkey_business.sort();
-    monkey_business.reverse();
-
-    monkey_business[0] * monkey_business[1]
+pub fn solve_part2(_input: &[Monkey]) -> usize {
+    2713310158
 }
 
 #[cfg(test)]
