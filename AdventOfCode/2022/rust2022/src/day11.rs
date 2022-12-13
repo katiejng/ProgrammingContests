@@ -35,7 +35,7 @@ struct NextMonkey {
 }
 
 impl Monkey {
-    fn tick(&mut self) -> Vec<NextMonkey> {
+    fn tick(&mut self, lcm: usize, part: usize) -> Vec<NextMonkey> {
         let items = self.items.clone();
         self.num_throws += items.len();
         self.items = vec![];
@@ -43,7 +43,11 @@ impl Monkey {
         let results = items.iter().map(|item| {
             let new_first_item = self.perform_operation(*item);
 
-            let bored_first_item = new_first_item / 3;
+            let mut bored_first_item = new_first_item / (if part == 1 { 3 } else { 1 });
+
+            if bored_first_item > lcm {
+                bored_first_item = bored_first_item % lcm;
+            }
 
             let next_monkey = self.test(bored_first_item);
 
@@ -151,6 +155,13 @@ pub fn solve_part1(input: &[Monkey]) -> usize {
     let num_monkeys = input.len();
     let mut monkeys: HashMap<usize, Monkey> = HashMap::new();
 
+    let divisors: Vec<usize> = input
+        .iter()
+        .map(|monkey| monkey.test.divisible_by)
+        .collect();
+
+    let lcm: usize = divisors.into_iter().product();
+
     for monkey in input {
         monkeys.insert(monkey.id, monkey.to_owned());
     }
@@ -158,7 +169,7 @@ pub fn solve_part1(input: &[Monkey]) -> usize {
     for _ in 0..20 {
         for monkey_index in 0..num_monkeys {
             let a_monkey = monkeys.get_mut(&monkey_index).unwrap();
-            let monkey_results = a_monkey.tick();
+            let monkey_results = a_monkey.tick(lcm, 1);
 
             monkey_results.iter().for_each(|monkey_result| {
                 let matching_monkey = monkeys.get_mut(&monkey_result.monkey_id).unwrap();
@@ -176,9 +187,48 @@ pub fn solve_part1(input: &[Monkey]) -> usize {
     monkey_business[0] * monkey_business[1]
 }
 
+/// Uses Lowest Common Multiple to make the numbers smaller.
+/// We only test if a number is divisible by 11, 5, 3, 19, 2, 13, 7 and 17.
+/// Any number that is divisible by any of those numbers, is also divisible by the LCM.
+/// Therefore just store the number % LCM instead of the big number.
+/// We don't actually use the result of the number!!!
+///
+
 #[aoc(day11, part2)]
-pub fn solve_part2(_input: &[Monkey]) -> usize {
-    2713310158
+pub fn solve_part2(input: &[Monkey]) -> usize {
+    let num_monkeys = input.len();
+    let divisors: Vec<usize> = input
+        .iter()
+        .map(|monkey| monkey.test.divisible_by)
+        .collect();
+
+    let lcm: usize = divisors.into_iter().product();
+
+    let mut monkeys: HashMap<usize, Monkey> = HashMap::new();
+
+    for monkey in input {
+        monkeys.insert(monkey.id, monkey.to_owned());
+    }
+
+    for _ in 0..10000 {
+        for monkey_index in 0..num_monkeys {
+            let a_monkey = monkeys.get_mut(&monkey_index).unwrap();
+            let monkey_results = a_monkey.tick(lcm, 2);
+
+            monkey_results.iter().for_each(|monkey_result| {
+                let matching_monkey = monkeys.get_mut(&monkey_result.monkey_id).unwrap();
+                matching_monkey.receive(monkey_result.worry_score);
+            });
+        }
+    }
+
+    let mut monkey_business: Vec<usize> =
+        monkeys.values().map(|monkey| monkey.num_throws).collect();
+
+    monkey_business.sort();
+    monkey_business.reverse();
+
+    monkey_business[0] * monkey_business[1]
 }
 
 #[cfg(test)]

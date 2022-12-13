@@ -72,14 +72,10 @@ pub fn solve_part1(input: &Input) -> String {
         })
     });
 
-    let results: Vec<String> = containers
-        .into_iter()
-        .map(|stack| stack.last().unwrap().to_string())
-        .collect();
-
-    let string: String = results.join("");
-
-    return string;
+    containers
+        .iter()
+        .map(|stack| stack.last().unwrap())
+        .collect()
 }
 
 #[aoc(day5, part2)]
@@ -96,14 +92,10 @@ pub fn solve_part2(input: &Input) -> String {
         })
     });
 
-    let results: Vec<String> = containers
-        .into_iter()
+    containers
+        .iter()
         .map(|stack| stack.last().unwrap().to_string())
-        .collect();
-
-    let string: String = results.join("");
-
-    return string;
+        .collect()
 }
 
 #[cfg(test)]
