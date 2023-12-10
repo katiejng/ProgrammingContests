@@ -1,0 +1,23 @@
+{
+  "name": "AOC_2023",
+  "version": "1.0.0",
+  "description": "Advent of code in typescript",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "ts-node": "10.9.2",
+    "typescript": "5.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "7.23.5",
+    "@babel/preset-env": "7.23.5",
+    "@babel/preset-typescript": "7.23.3",
+    "@types/jest": "29.5.11",
+    "babel-jest": "29.7.0",
+    "jest": "29.7.0"
+  }
+}
