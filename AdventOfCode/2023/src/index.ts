@@ -2,6 +2,10 @@ import { day1part1, day1part2 } from "./day1/day1";
 import { day1Input } from "./day1/input";
 import { day10part1, day10part2 } from "./day10";
 import { day10Input } from "./day10/input";
+import { day11part1, day11part2 } from "./day11";
+import { day11Input } from "./day11/input";
+import { day12part1, day12part2 } from "./day12";
+import { day12Input } from "./day12/input";
 import { day2part1, day2part2 } from "./day2/day2";
 import { day2Input } from "./day2/input";
 import { day3part1, day3part2 } from "./day3/day3";
@@ -73,6 +77,24 @@ const levels: Day[] = [
   [
     { number: 1, input: day10Input, function: day10part1, expected: 6714 },
     { number: 2, input: day10Input, function: day10part2, expected: 429 },
+  ],
+  [
+    { number: 1, input: day11Input, function: day11part1, expected: 9329143 },
+    {
+      number: 2,
+      input: day11Input,
+      function: day11part2,
+      expected: 710674907809,
+    },
+  ],
+  [
+    { number: 1, input: day12Input, function: day12part1, expected: 7753 },
+    {
+      number: 2,
+      input: day12Input,
+      function: day12part2,
+      expected: 280382734828319,
+    },
   ],
   [
     // { number: 1, input: day10Input, function: day10part1, expected: 0 },
